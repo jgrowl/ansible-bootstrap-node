@@ -1,0 +1,17 @@
+#!/bin/sh
+#!/usr/bin/env sh
+
+#Generate the ssh key
+#ssh-keygen -t rsa
+
+# Add its own ssh key to its own authorized_keys limiting it to only itself!!!
+IP=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`;
+PUBLIC_KEY=`cat ~/.ssh/id_rsa.pub`
+AUTHORIZED_KEYS="from=\"$IP\" $PUBLIC_KEY"
+echo $AUTHORIZED_KEYS
+
+# Send ssh key over
+#ANSIBLE_USERNAME=root
+#ANSIBLE_SERVER=192.168.0.102
+#ssh-copy-id $ANSIBLE_USERNAME@$ANSIBLE_SERVER
+

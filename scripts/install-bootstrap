@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# $1 = current ip of box
+# $2 = desired ip 
+# TODO: $3 = desired hostname
+USERNAME="USERNAME"
+scp ./bootstrap.sh.x $USERNAME@$1:~/
+ssh -t $USERNAME@$1 "sudo ./bootstrap.sh.x $2"
